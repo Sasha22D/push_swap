@@ -3,6 +3,7 @@
 
 #include <stdbool.h>
 #include <stdlib.h>
+#include <limits.h>
 
 typedef struct s_stack_node
 {
@@ -16,5 +17,6 @@ typedef struct s_stack_node
 }			t_stack_node;
 
 char	**ft_split(char *str);
+void	ft_init_stack(t_stack_node **stack, char **tab);
 
 #endif

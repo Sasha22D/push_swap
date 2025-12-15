@@ -11,4 +11,5 @@ int	main(int argc, char **argv)
 		return (1);
 	if (argc == 2)
 		argv = ft_split(argv + 1);
+	ft_init_stack(&a, argv);
 }

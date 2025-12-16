@@ -23,5 +23,6 @@ void	ft_lst_add_front(t_stack_node **stack, t_stack_node *new);
 void	ft_lstdelone(t_stack_node *node);
 void	swap_first_elements(t_stack_node **stack);
 void	ss(t_stack_node **stack_a, t_stack_node **stack_b);
+void	push_first_element(t_stack_node **stack_1, t_stack_node **stack_2);
 
 #endif

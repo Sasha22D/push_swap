@@ -4,10 +4,11 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <limits.h>
+#include <stdio.h> // pour les printf des tests
 
 typedef struct s_stack_node
 {
-	int 			value;
+	long 			value;
 	int			index;
 	bool			above_median;
 	bool			cheapest;

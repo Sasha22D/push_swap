@@ -15,20 +15,20 @@ static long	ft_atol(char *str)
 		i++;
 	while (str[i] >= 48 && str[i] <= 57)
 	{
-		result += str[i] - 48;
 		result *= 10;
+		result += str[i] - 48;
 		i++;
 	}
-	return (result);
+	return (result * sign);
 }
 
-static t_stack_node	*ft_lst_new(int value, int index)
+static t_stack_node	*ft_lst_new(long value, int index)
 {
 	t_stack_node	*new;
 
 	new = malloc(sizeof(t_stack_node));
 	if (!new)
-		return ;
+		return (NULL);
 	new->value = value;
 	new->index = index;
 	new->next = NULL;
@@ -38,7 +38,6 @@ static t_stack_node	*ft_lst_new(int value, int index)
 
 static void	ft_lst_add_back(t_stack_node **stack, t_stack_node *new)
 {
-	t_stack_node	*head;
 	t_stack_node	*tail;
 
 	if (!stack || !new)
@@ -50,12 +49,9 @@ static void	ft_lst_add_back(t_stack_node **stack, t_stack_node *new)
 		return ;
 	}
 	while (tail->next)
-	{
-		head = tail->next;
 		tail = tail->next;
-	}
 	tail->next = new;
-	tail->next->prev = head;
+	new->prev = tail;
 }
 
 void	ft_init_stack(t_stack_node **stack, char **tab)
@@ -65,7 +61,7 @@ void	ft_init_stack(t_stack_node **stack, char **tab)
 	i = 0;
 	while (tab[i])
 	{
-		ft_lst_add_back(&stack, ft_lst_new(ft_atol(tab[i]), i));
+		ft_lst_add_back(stack, ft_lst_new(ft_atol(tab[i]), i));
 		i++;
 	}
 }

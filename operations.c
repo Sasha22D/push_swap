@@ -20,8 +20,3 @@ void	ss(t_stack_node **stack_a, t_stack_node **stack_b)
 	swap_first_elements(stack_a);
 	swap_first_elements(stack_b);
 }
-
-void	push_first_element(t_stack_node **stack_a, t_stack_node **stack_b)
-{
-	
-}

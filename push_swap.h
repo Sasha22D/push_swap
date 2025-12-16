@@ -19,5 +19,9 @@ typedef struct s_stack_node
 
 char	**ft_split(char *str);
 void	ft_init_stack(t_stack_node **stack, char **tab);
+void	ft_lst_add_front(t_stack_node **stack, t_stack_node *new);
+void	ft_lstdelone(t_stack_node *node);
+void	swap_first_elements(t_stack_node **stack);
+void	ss(t_stack_node **stack_a, t_stack_node **stack_b);
 
 #endif

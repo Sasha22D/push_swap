@@ -3,20 +3,29 @@
 void	push_first_element(t_stack_node **stack_1, t_stack_node **stack_2)
 {
 	t_stack_node	*temp;
+	t_stack_node	*head_1;
+	t_stack_node	*head_2;
 
-	temp = (*stack_1)->next;
-	ft_lst_add_front(stack_2, *stack_1);
-	ft_lstdelone(*stack_1);
-	*stack_1 = temp;
+	temp = *stack_1;
+	*stack_1 = (*stack_1)->next;
+	head_1 = *stack_1;
 	(*stack_1)->prev = NULL;
-	// while (*stack_1)
-	// {
-	// 	(*stack_1)->index -= 1;
-	// 	*stack_1 = (*stack_1)->next;
-	// }
-	// while (*stack_2)
-	// {
-	// 	(*stack_2)->index -= 1;
-	// 	*stack_2 = (*stack_2)->next;
-	// }
+	temp->next = *stack_2;
+	*stack_2 = temp;
+	while (head_1 != NULL)
+	{
+		head_1->index -= 1;
+		head_1 = head_1->next;
+	}
+	head_2 = *stack_2;
+	if (head_2->next)
+	{
+		head_2 = head_2->next;
+		head_2->prev = *stack_2;
+		while (head_2 != NULL)
+		{
+			head_2->index += 1;
+			head_2 = head_2->next;
+		}
+	}
 }

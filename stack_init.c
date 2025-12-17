@@ -10,7 +10,10 @@ static long	ft_atol(char *str)
 	result = 0;
 	sign = 1;
 	if (str[i] == '-')
+	{
 		sign *= -1;
+		i++;
+	}
 	else if (str[i] == '+')
 		i++;
 	while (str[i] >= 48 && str[i] <= 57)

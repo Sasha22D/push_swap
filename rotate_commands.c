@@ -7,11 +7,12 @@ void	rotate_stack(t_stack_node **stack)
 
 	head = *stack;
 	tail = *stack;
-	while (tail != NULL)
+	while (tail->next)
 		tail = tail->next;
 	tail->prev->next = NULL;
 	tail->prev = NULL;
 	tail->next = head;
+	tail->index = 0;
 	head->prev = tail;
 	while (head != NULL)
 	{
@@ -19,4 +20,10 @@ void	rotate_stack(t_stack_node **stack)
 		head = head->next;
 	}
 	*stack = tail;
+}
+
+void	rr(t_stack_node **stack_a, t_stack_node **stack_b)
+{
+	rotate_stack(stack_a);
+	rotate_stack(stack_b);
 }

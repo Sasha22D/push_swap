@@ -27,3 +27,9 @@ void	reverse_rotate_stack(t_stack_node **stack)
 	}
 	*stack = second;
 }
+
+void	rrr(t_stack_node **stack_a, t_stack_node **stack_b)
+{
+	reverse_rotate_stack(stack_a);
+	reverse_rotate_stack(stack_b);
+}

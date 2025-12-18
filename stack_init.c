@@ -57,23 +57,6 @@ static void	ft_lst_add_back(t_stack_node **stack, t_stack_node *new)
 	new->prev = tail;
 }
 
-// NOUVEAUX ADD FRONT ET DELONE
-void	ft_lst_add_front(t_stack_node **stack, t_stack_node *new)
-{
-	if (!new)
-		return ;
-	new->next = *stack;
-	new->prev = NULL;
-	*stack = new;
-}
-
-void	ft_lstdelone(t_stack_node *node)
-{
-	if (!node)
-		return ;
-	free(node);
-}
-
 void	ft_init_stack(t_stack_node **stack, char **tab)
 {
 	int	i;

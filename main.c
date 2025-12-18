@@ -3,10 +3,10 @@
 int	main(int argc, char **argv)
 {
 	t_stack_node	*a;
-	// t_stack_node	*b;
+	t_stack_node	*b;
 
 	a = NULL;
-	// b = NULL;
+	b = NULL;
 	if (argc == 1 || (argc == 2 && argv[1][0] == 0))
 		return (1);
 	if (argc == 2)
@@ -26,6 +26,8 @@ int	main(int argc, char **argv)
 		{
 			tiny_sort(&a);
 		}
+		else
+			push_swap(&a, &b);
 	}
 	// while (a != NULL)
 	// {
@@ -36,7 +38,7 @@ int	main(int argc, char **argv)
 	// printf("======================================\n");
 	// while (b != NULL)
 	// {
-	// 	printf("Value: %ld, index: %d\n", b->value, b->index);
+	// 	printf("Value: %ld, index: %d Target node:%p\n", b->value, b->index, b->target_node);
 	// 	printf("ID: %p, Next: %p, prev: %p\n", (void*)b, (void*)b->next, (void*)b->prev);
 	// 	b = b->next;
 	// }

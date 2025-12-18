@@ -33,6 +33,7 @@ t_stack_node	*find_biggest(t_stack_node **stack)
 {
 	t_stack_node	*head;
 	t_stack_node	*tail;
+
 	head = *stack;
 	tail = head->next;
 	if (head->value > tail->value)
@@ -48,6 +49,32 @@ t_stack_node	*find_biggest(t_stack_node **stack)
 		head = head->next;
 		tail = tail->next;
 		if (head->value > tail->value)
+			return (head);
+		else
+			return (tail);
+	}
+}
+
+t_stack_node	*find_smallest(t_stack_node **stack)
+{
+	t_stack_node	*head;
+	t_stack_node	*tail;
+
+	head = *stack;
+	tail = head->next;
+	if (head->value < tail->value)
+	{
+		tail = tail->next;
+		if (head->value < tail->value)
+			return (head);
+		else
+			return (tail);
+	}
+	else
+	{
+		head = head->next;
+		tail = tail->next;
+		if (head->value < tail->value)
 			return (head);
 		else
 			return (tail);

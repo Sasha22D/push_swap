@@ -11,14 +11,18 @@ void	swap_first_elements(t_stack_node **stack)
 	first = *stack;
 	second = first->next;
 	third = second->next;
-
+	if (third)
+	{
+		third->prev = first;
+		first->next = third;
+	}
+	else
+		first->next = NULL;
 	first->prev = second;
-	first->next = third;
 	first->index = 1;
 	second->prev = NULL;
 	second->next = first;
 	second->index = 0;
-	third->prev = first;
 
 	*stack = second;
 }

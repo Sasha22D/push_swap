@@ -4,28 +4,22 @@ void	reverse_rotate_stack(t_stack_node **stack)
 {
 	t_stack_node	*head;
 	t_stack_node	*tail;
-	t_stack_node	*second;
-	t_stack_node	*temp;
 
-	if (!(*stack)->next)
-		return ;
 	head = *stack;
 	tail = *stack;
-	second = head->next;
-	temp = second;
 	while (tail->next)
 		tail = tail->next;
-	second->prev = NULL;
-	head->prev = tail;
-	head->next = NULL;
-	head->index = tail->index + 1;
+	tail->prev->next = NULL;
+	tail->prev = NULL;
 	tail->next = head;
-	while (temp != NULL)
+	tail->index = 0;
+	head->prev = tail;
+	while (head != NULL)
 	{
-		temp->index -= 1;
-		temp = temp->next;
+		head->index += 1;
+		head = head->next;
 	}
-	*stack = second;
+	*stack = tail;
 }
 
 void	rrr(t_stack_node **stack_a, t_stack_node **stack_b)

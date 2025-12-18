@@ -4,22 +4,28 @@ void	rotate_stack(t_stack_node **stack)
 {
 	t_stack_node	*head;
 	t_stack_node	*tail;
+	t_stack_node	*second;
+	t_stack_node	*temp;
 
+	if (!(*stack)->next)
+		return ;
 	head = *stack;
 	tail = *stack;
+	second = head->next;
+	temp = second;
 	while (tail->next)
 		tail = tail->next;
-	tail->prev->next = NULL;
-	tail->prev = NULL;
-	tail->next = head;
-	tail->index = 0;
+	second->prev = NULL;
 	head->prev = tail;
-	while (head != NULL)
+	head->next = NULL;
+	head->index = tail->index + 1;
+	tail->next = head;
+	while (temp != NULL)
 	{
-		head->index += 1;
-		head = head->next;
+		temp->index -= 1;
+		temp = temp->next;
 	}
-	*stack = tail;
+	*stack = second;
 }
 
 void	rr(t_stack_node **stack_a, t_stack_node **stack_b)

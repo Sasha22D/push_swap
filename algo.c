@@ -52,16 +52,16 @@ void	set_median(t_stack_node **a, t_stack_node **b)
 	while (head != NULL)
 	{
 		if (head->index <= (len / 2))
-			head->above_median = false;
-		else
 			head->above_median = true;
+		else
+			head->above_median = false;
 		head = head->next;
 	}
 	len = get_stack_len(b);
 	head = *b;
 	while (head != NULL)
 	{
-		if (head->index <= (len / 2))
+		if (head->index > (len / 2))
 			head->above_median = false;
 		else
 			head->above_median = true;
@@ -82,6 +82,7 @@ void	set_price(t_stack_node **a, t_stack_node **b)
 			head->price = head->index;
 		else
 			head->price = len - head->index;
+		head = head->next;
 	}
 	len = get_stack_len(b);
 	head = *b;
@@ -91,6 +92,7 @@ void	set_price(t_stack_node **a, t_stack_node **b)
 			head->price = head->index;
 		else
 			head->price = len - head->index;
+		head = head->next;
 	}
 }
 
@@ -124,10 +126,11 @@ void	push_swap(t_stack_node **a, t_stack_node **b)
 	}
 	head = *b;
 	get_target_node(a, b);
-	// while (head != NULL)
-	// {
-	// 	set_price(a, b);
-	// 	find_cheapest(b);
-	// 	head = head->next;
-	// }
+	while (head != NULL)
+	{
+		set_median(a, b);
+		set_price(a, b);
+		// find_cheapest(b);
+		head = head->next;
+	}
 }

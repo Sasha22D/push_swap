@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sadaniel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/19 11:21:44 by sadaniel          #+#    #+#             */
+/*   Updated: 2025/12/19 11:21:48 by sadaniel         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "push_swap.h"
 
 int	ft_count_words(char *str)
@@ -33,8 +44,8 @@ int	ft_strlen_sep(char *str)
 
 char	*ft_strdup(char *str)
 {
+	int		i;
 	char	*new;
-	int	i;
 
 	i = 0;
 	while (str[i] && str[i] != ' ')
@@ -54,9 +65,9 @@ char	*ft_strdup(char *str)
 
 char	**ft_split(char *str)
 {
+	int		i;
+	int		j;
 	char	**new;
-	int	i;
-	int	j;
 
 	i = 0;
 	j = 0;

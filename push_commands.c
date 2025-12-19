@@ -14,29 +14,28 @@
 void	push_first_element(t_stack_node **stack_1, t_stack_node **stack_2)
 {
 	t_stack_node	*temp;
-	t_stack_node	*head_1;
-	t_stack_node	*head_2;
+	t_stack_node	*head;
 
 	temp = *stack_1;
 	*stack_1 = (*stack_1)->next;
-	head_1 = *stack_1;
+	head = *stack_1;
 	(*stack_1)->prev = NULL;
 	temp->next = *stack_2;
 	*stack_2 = temp;
-	while (head_1 != NULL)
+	while (head != NULL)
 	{
-		head_1->index -= 1;
-		head_1 = head_1->next;
+		head->index -= 1;
+		head = head->next;
 	}
-	head_2 = *stack_2;
-	if (head_2->next)
+	head = *stack_2;
+	if (head->next)
 	{
-		head_2 = head_2->next;
-		head_2->prev = *stack_2;
-		while (head_2 != NULL)
+		head = head->next;
+		head->prev = *stack_2;
+		while (head != NULL)
 		{
-			head_2->index += 1;
-			head_2 = head_2->next;
+			head->index += 1;
+			head = head->next;
 		}
 	}
 }

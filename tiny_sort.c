@@ -27,7 +27,7 @@ int	is_stack_sorted(t_stack_node **stack)
 
 int	get_stack_len(t_stack_node **stack)
 {
-	int	len;
+	int				len;
 	t_stack_node	*head;
 
 	len = 0;

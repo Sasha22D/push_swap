@@ -12,17 +12,18 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-#include <stdbool.h>
-#include <stdlib.h>
-#include <limits.h>
-#include <stdio.h> // pour les printf des tests
+# include <stdbool.h>
+# include <stdlib.h>
+# include <limits.h>
+# include <stdio.h> // pour les printf des tests
 
 typedef struct s_stack_node
 {
-	long 			value;
-	int			index;
-	bool			above_median;
-	bool			cheapest;
+	int					value;
+	int					index;
+	int					price;
+	bool				above_median;
+	bool				cheapest;
 	struct s_stack_node	*target_node;
 	struct s_stack_node	*next;
 	struct s_stack_node	*prev;
@@ -42,8 +43,8 @@ void	rotate_stack(t_stack_node **stack);
 // REVERSE ROTATE COMMANDS
 void	reverse_rotate_stack(t_stack_node **stack);
 // CHECK STACK AND TINY SORT
-int	is_stack_sorted(t_stack_node **stack);
-int	get_stack_len(t_stack_node **stack);
+int		is_stack_sorted(t_stack_node **stack);
+int		get_stack_len(t_stack_node **stack);
 t_stack_node	*find_biggest(t_stack_node **stack);
 t_stack_node	*find_smallest(t_stack_node **stack);
 void	tiny_sort(t_stack_node **stack);

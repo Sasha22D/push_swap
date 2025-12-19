@@ -17,7 +17,7 @@ void	swap_first_elements(t_stack_node **stack)
 	t_stack_node	*second;
 	t_stack_node	*third;
 
-	if(!*stack || !(*stack)->next)
+	if (!*stack || !(*stack)->next)
 		return ;
 	first = *stack;
 	second = first->next;
@@ -34,7 +34,6 @@ void	swap_first_elements(t_stack_node **stack)
 	second->prev = NULL;
 	second->next = first;
 	second->index = 0;
-
 	*stack = second;
 }
 

@@ -11,28 +11,107 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-void	get_target_node(t_stack_node **a, t_stack_node **node)
+void	get_target_node(t_stack_node **a, t_stack_node **b)
 {
+	t_stack_node	*head_a;
+	t_stack_node	*head_b;
+
+	head_a = *a;
+	head_b = *b;
+	head_b->target_node = NULL;
+	while (head_b != NULL)
+	{
+		while (head_a != NULL)
+		{
+			if (head_b->value < head_a->value)
+			{
+				if (head_b->target_node)
+				{
+					if (head_b->target_node->value > head_a->value)
+						head_b->target_node = head_a;
+				}
+				else
+					head_b->target_node = head_a;
+			}
+			head_a = head_a->next;
+		}
+		if (head_b->target_node == NULL)
+			head_b->target_node = find_smallest(a);
+		head_a = *a;
+		head_b = head_b->next;
+	}
+}
+
+void	set_median(t_stack_node **a, t_stack_node **b)
+{
+	int			len;
 	t_stack_node	*head;
 
+	len = get_stack_len(a);
 	head = *a;
-	(*node)->target_node = NULL;
 	while (head != NULL)
 	{
-		if ((*node)->value < head->value)
+		if (head->index <= (len / 2))
+			head->above_median = false;
+		else
+			head->above_median = true;
+		head = head->next;
+	}
+	len = get_stack_len(b);
+	head = *b;
+	while (head != NULL)
+	{
+		if (head->index <= (len / 2))
+			head->above_median = false;
+		else
+			head->above_median = true;
+		head = head->next;
+	}
+}
+
+void	set_price(t_stack_node **a, t_stack_node **b)
+{
+	int			len;
+	t_stack_node	*head;
+
+	len = get_stack_len(a);
+	head = *a;
+	while (head != NULL)
+	{
+		if (head->above_median)
+			head->price = head->index;
+		else
+			head->price = len - head->index;
+	}
+	len = get_stack_len(b);
+	head = *b;
+	while (head != NULL)
+	{
+		if (head->above_median)
+			head->price = head->index;
+		else
+			head->price = len - head->index;
+	}
+}
+
+void	find_cheapest(t_stack_node **stack)
+{
+	t_stack_node	*head;
+	t_stack_node	*cursor;
+
+	head = *stack;
+	cursor = *stack;
+	cursor->cheapest = true;
+	while (head != NULL)
+	{
+		if (head->price + head->target_node->price < cursor->price + cursor->target_node->price)
 		{
-			if ((*node)->target_node)
-			{
-				if ((*node)->target_node->value > head->value)
-					(*node)->target_node = head;
-			}
-			else
-				(*node)->target_node = head;
+			cursor->cheapest = false;
+			cursor = head;
+			cursor->cheapest = true;
 		}
 		head = head->next;
 	}
-	if ((*node)->target_node == NULL)
-		(*node)->target_node = find_smallest(a);
 }
 
 void	push_swap(t_stack_node **a, t_stack_node **b)
@@ -44,11 +123,11 @@ void	push_swap(t_stack_node **a, t_stack_node **b)
 		push_first_element(a, b);
 	}
 	head = *b;
-	if (get_stack_len(a) == 3)
-		tiny_sort(a);
-	while (head != NULL)
-	{
-		get_target_node(a, &head);
-		head = head->next;
-	}
+	get_target_node(a, b);
+	// while (head != NULL)
+	// {
+	// 	set_price(a, b);
+	// 	find_cheapest(b);
+	// 	head = head->next;
+	// }
 }

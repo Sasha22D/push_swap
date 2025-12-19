@@ -31,8 +31,6 @@ typedef struct s_stack_node
 
 char	**ft_split(char *str);
 void	ft_init_stack(t_stack_node **stack, char **tab);
-void	ft_lst_add_front(t_stack_node **stack, t_stack_node *new);
-void	ft_lstdelone(t_stack_node *node);
 // SWAP FIRST ELEMENTS COMMANDS
 void	swap_first_elements(t_stack_node **stack);
 void	ss(t_stack_node **stack_a, t_stack_node **stack_b);
@@ -40,8 +38,10 @@ void	ss(t_stack_node **stack_a, t_stack_node **stack_b);
 void	push_first_element(t_stack_node **stack_1, t_stack_node **stack_2);
 // ROTATE COMMANDS
 void	rotate_stack(t_stack_node **stack);
+void	rr(t_stack_node **stack_a, t_stack_node **stack_b);
 // REVERSE ROTATE COMMANDS
 void	reverse_rotate_stack(t_stack_node **stack);
+void	rrr(t_stack_node **stack_a, t_stack_node **stack_b);
 // CHECK STACK AND TINY SORT
 int		is_stack_sorted(t_stack_node **stack);
 int		get_stack_len(t_stack_node **stack);
@@ -50,5 +50,7 @@ t_stack_node	*find_smallest(t_stack_node **stack);
 void	tiny_sort(t_stack_node **stack);
 // ALGORITHM
 void	push_swap(t_stack_node **a, t_stack_node **b);
+void	set_median(t_stack_node **a, t_stack_node **b);
+void	rotate_push(t_stack_node **stack_a, t_stack_node **stack_b);
 
 #endif

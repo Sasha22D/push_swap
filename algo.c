@@ -104,13 +104,16 @@ void	find_cheapest(t_stack_node **stack)
 	head = *stack;
 	cursor = *stack;
 	cursor->cheapest = true;
+	cursor->target_node->cheapest = true;
 	while (head != NULL)
 	{
 		if (head->price + head->target_node->price < cursor->price + cursor->target_node->price)
 		{
 			cursor->cheapest = false;
+			cursor->target_node->cheapest = false;
 			cursor = head;
 			cursor->cheapest = true;
+			cursor->target_node->cheapest = true;
 		}
 		head = head->next;
 	}
@@ -118,19 +121,30 @@ void	find_cheapest(t_stack_node **stack)
 
 void	push_swap(t_stack_node **a, t_stack_node **b)
 {
-	t_stack_node	*head;
+	t_stack_node	*smallest_node;
 
 	while (get_stack_len(a) > 3)
 	{
 		push_first_element(a, b);
 	}
-	head = *b;
-	get_target_node(a, b);
-	while (head != NULL)
+	tiny_sort(a);
+	while (*b)
 	{
-		set_median(a, b);
+		get_target_node(a, b);
 		set_price(a, b);
-		// find_cheapest(b);
-		head = head->next;
+		find_cheapest(b);
+		rotate_push(a, b);
+	}
+	set_median(a, b);
+	smallest_node = find_smallest(a);
+	if (smallest_node->above_median)
+	{
+		while (*a != smallest_node)
+			rotate_stack(a);
+	}
+	else
+	{
+		while (*a != smallest_node)
+			reverse_rotate_stack(a);
 	}
 }

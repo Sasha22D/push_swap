@@ -42,14 +42,16 @@ int	main(int argc, char **argv)
 	}
 	while (a != NULL)
 	{
-		printf("Value: %d, index: %d PRICE:%d\n", a->value, a->index, a->price);
+		printf("NODE NUMBER %d\n=============\n", a->index);
+		printf("Value: %d, index: %d PRICE:%d CHEAPEST:%d\n", a->value, a->index, a->price, a->cheapest);
 		printf("ID: %p, Next: %p, prev: %p\n", (void*)a, (void*)a->next, (void*)a->prev);
 		a = a->next;
 	}
 	printf("======================================\n");
 	while (b != NULL)
 	{
-		printf("Value: %d, index: %d Target node:%d PRICE:%d\n", b->value, b->index, b->target_node->value, b->price);
+		printf("NODE NUMBER %d\n=============\n", b->index);
+		printf("Value: %d, index: %d PRICE:%d TARGET:%d CHEAPEST:%d\n", b->value, b->index, b->price, b->target_node->value, b->cheapest);
 		printf("ID: %p, Next: %p, prev: %p\n", (void*)b, (void*)b->next, (void*)b->prev);
 		b = b->next;
 	}

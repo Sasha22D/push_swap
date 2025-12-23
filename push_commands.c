@@ -10,18 +10,24 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
-
+// »»-----► Number of lines: 30
 void	push_first_element(t_stack_node **stack_1, t_stack_node **stack_2)
 {
 	t_stack_node	*temp;
 	t_stack_node	*head;
 
 	temp = *stack_1;
-	*stack_1 = (*stack_1)->next;
-	head = *stack_1;
-	(*stack_1)->prev = NULL;
+	if ((*stack_1)->next)
+	{
+		*stack_1 = (*stack_1)->next;
+		head = *stack_1;
+	}
+	else
+		head = NULL;
+	temp->prev = NULL;
 	temp->next = *stack_2;
 	*stack_2 = temp;
+	*stack_1 = head;
 	while (head != NULL)
 	{
 		head->index -= 1;

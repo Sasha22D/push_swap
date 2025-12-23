@@ -131,6 +131,7 @@ void	push_swap(t_stack_node **a, t_stack_node **b)
 	while (*b)
 	{
 		get_target_node(a, b);
+		set_median(a, b);
 		set_price(a, b);
 		find_cheapest(b);
 		rotate_push(a, b);

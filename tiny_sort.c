@@ -72,24 +72,22 @@ t_stack_node	*find_smallest(t_stack_node **stack)
 	t_stack_node	*tail;
 
 	head = *stack;
+	if (!(head->next))
+		return (head);
 	tail = head->next;
-	if (head->value < tail->value)
+	while (tail)
 	{
-		tail = tail->next;
-		if (head->value < tail->value)
-			return (head);
+		if (head->value > tail->value)
+		{
+			head = tail;
+			tail = tail->next;
+		}
 		else
-			return (tail);
+		{
+			tail = tail->next;
+		}
 	}
-	else
-	{
-		head = head->next;
-		tail = tail->next;
-		if (head->value < tail->value)
-			return (head);
-		else
-			return (tail);
-	}
+	return (head);
 }
 
 void	tiny_sort(t_stack_node **stack)

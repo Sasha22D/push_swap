@@ -49,8 +49,6 @@ t_stack_node	*find_biggest(t_stack_node **stack);
 t_stack_node	*find_smallest(t_stack_node **stack);
 void	tiny_sort(t_stack_node **stack);
 // ALGORITHM
-void	push_swap(t_stack_node **a, t_stack_node **b);
-void	set_median(t_stack_node **a, t_stack_node **b);
-void	rotate_push(t_stack_node **stack_a, t_stack_node **stack_b);
+void	init_nodes_values(t_stack_node **a, t_stack_node **b);
 
 #endif

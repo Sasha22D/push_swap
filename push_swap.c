@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void	set_target_node(t_stack_node **a, t_stack_node **b)
+static void	set_target_node(t_stack_node **a, t_stack_node **b)
 {
 	t_stack_node	*head;
 	t_stack_node	*head_b;
@@ -30,7 +30,7 @@ void	set_target_node(t_stack_node **a, t_stack_node **b)
 	}
 }
 
-void	set_median(t_stack_node **a, t_stack_node **b)
+static void	set_median(t_stack_node **a, t_stack_node **b)
 {
 	t_stack_node	*head;
 	int		len;
@@ -57,7 +57,7 @@ void	set_median(t_stack_node **a, t_stack_node **b)
 	}
 }
 
-void	set_price(t_stack_node **a, t_stack_node **b)
+static void	set_price(t_stack_node **a, t_stack_node **b)
 {
 	t_stack_node	*head;
 	int		len;
@@ -82,4 +82,11 @@ void	set_price(t_stack_node **a, t_stack_node **b)
 			head->price = len - head->index;
 		head = head->next;
 	}
+}
+
+void	init_nodes_values(t_stack_node **a, t_stack_node **b)
+{
+	set_target_node(a, b);
+	set_median(a, b);
+	set_price(a, b);
 }

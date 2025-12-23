@@ -56,3 +56,30 @@ void	set_median(t_stack_node **a, t_stack_node **b)
 		head = head->next;
 	}
 }
+
+void	set_price(t_stack_node **a, t_stack_node **b)
+{
+	t_stack_node	*head;
+	int		len;
+
+	head = *a;
+	len = get_stack_len(a);
+	while (head)
+	{
+		if (head->above_median)
+			head->price = head->index;
+		else
+			head->price = len - head->index;
+		head = head->next;
+	}
+	head = *b;
+	len = get_stack_len(b);
+	while (head)
+	{
+		if (head->above_median)
+			head->price = head->index;
+		else
+			head->price = len - head->index;
+		head = head->next;
+	}
+}

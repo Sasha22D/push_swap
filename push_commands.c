@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
-// »»-----► Number of lines: 30
+
 void	push_first_element(t_stack_node **stack_1, t_stack_node **stack_2)
 {
 	t_stack_node	*temp;

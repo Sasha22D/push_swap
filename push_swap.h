@@ -12,6 +12,7 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+#include <unistd.h>
 # include <stdbool.h>
 # include <stdlib.h>
 # include <limits.h>
@@ -52,5 +53,10 @@ void	tiny_sort(t_stack_node **stack);
 void	push_swap(t_stack_node **a, t_stack_node **b);
 void	init_nodes_values(t_stack_node **a, t_stack_node **b);
 void	push_cheapest(t_stack_node **a, t_stack_node **b);
+// ERROR HANDLING
+void	free_stack(t_stack_node **a);
+void	free_argv(char **tab);
+int	repetition_check(t_stack_node **stack, int nb);
+int	syntax_check(char *nbr);
 
 #endif

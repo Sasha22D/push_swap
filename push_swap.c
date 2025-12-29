@@ -84,9 +84,34 @@ static void	set_price(t_stack_node **a, t_stack_node **b)
 	}
 }
 
+static void	set_cheapest(t_stack_node **stack)
+{
+	t_stack_node	*head;
+	t_stack_node	*cursor;
+
+	head = *stack;
+	cursor = head;
+	cursor->cheapest = true;
+	cursor->target_node->cheapest = true;
+	while (head)
+	{
+		if (head->price + head->target_node->price <
+			cursor->price + cursor->target_node->price)
+		{
+			cursor->cheapest = false;
+			cursor->target_node->cheapest = false;
+			cursor = head;
+			cursor->cheapest = true;
+			cursor->target_node->cheapest = true;
+		}
+		head = head->next;
+	}
+}
+
 void	init_nodes_values(t_stack_node **a, t_stack_node **b)
 {
 	set_target_node(a, b);
 	set_median(a, b);
 	set_price(a, b);
+	set_cheapest(b);
 }

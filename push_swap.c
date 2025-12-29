@@ -2,30 +2,27 @@
 
 static void	set_target_node(t_stack_node **a, t_stack_node **b)
 {
-	t_stack_node	*head;
+	t_stack_node	*head_a;
 	t_stack_node	*head_b;
+	t_stack_node	*best;
 
 	head_b = *b;
 	while (head_b)
 	{
-		head = *a;
-		while (head != NULL)
+		best = NULL;
+		head_a = *a;
+		while (head_a)
 		{
-			if (head->value > head_b->value)
+			if (head_a->value > head_b->value)
 			{
-				if (head_b->target_node && head_b->target_node->value > head->value)
-				{
-					head_b->target_node = head;
-				}
-				else if (!(head_b->target_node))
-				{
-					head_b->target_node = head;
-				}
+				if (!best || head_a->value < best->value)
+					best = head_a;
 			}
-			head = head->next;
+			head_a = head_a->next;
 		}
-		if (!(head_b->target_node))
-			head_b->target_node = find_smallest(a);
+		if (!best)
+			best = find_smallest(a);
+		head_b->target_node = best;
 		head_b = head_b->next;
 	}
 }
@@ -126,7 +123,14 @@ void	push_swap(t_stack_node **a, t_stack_node **b)
 	while (*b)
 	{
 		init_nodes_values(a, b);
+		t_stack_node *head = *b;
+		while (head)
+		{
+			printf("%d NODE ----> TARGET= %d\n", head->value, head->target_node->value);
+			head = head->next;
+		}
 		push_cheapest(a, b);
+		
 	}
 	smallest = find_smallest(a);
 	while (*a != smallest)

@@ -30,6 +30,7 @@ void	free_argv(char **tab)
 		i++;
 	}
 	free(tab[i]);
+	free(tab);
 }
 
 int	repetition_check(t_stack_node **stack, int nb)

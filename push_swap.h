@@ -62,5 +62,6 @@ void	free_stack(t_stack_node **a);
 void	free_argv(char **tab);
 int	repetition_check(t_stack_node **stack, int nb);
 int	syntax_check(char *nbr);
+void	error_handler(t_stack_node **stack, char **tab, int flag);
 
 #endif

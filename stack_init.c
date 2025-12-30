@@ -71,36 +71,18 @@ static void	ft_lst_add_back(t_stack_node **stack, t_stack_node *new)
 void	ft_init_stack(t_stack_node **stack, char **tab, int flag)
 {
 	long	nb;
-	int	i;
+	int		i;
 
 	i = 0;
 	while (tab[i])
 	{
 		if (syntax_check(tab[i]))
-		{
-			free_stack(stack);
-			if (flag == 1)
-				free_argv(tab);
-			write(2, "Error\n", 6);
-			exit(1);
-		}
+			error_handler(stack, tab, flag);
 		nb = ft_atol(tab[i]);
 		if (nb > INT_MAX || nb < INT_MIN)
-		{
-			free_stack(stack);
-			if (flag == 1)
-				free_argv(tab);
-			write(2, "Error\n", 6);
-			exit(1);
-		}
+			error_handler(stack, tab, flag);
 		if (repetition_check(stack, (int)nb))
-		{
-			free_stack(stack);
-			if (flag == 1)
-				free_argv(tab);
-			write(2, "Error\n", 6);
-			exit(1);
-		}
+			error_handler(stack, tab, flag);
 		ft_lst_add_back(stack, ft_lst_new(nb, i));
 		i++;
 	}

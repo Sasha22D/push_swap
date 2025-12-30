@@ -31,13 +31,9 @@ int	main(int argc, char **argv)
 	if (!is_stack_sorted(&a))
 	{
 		if (get_stack_len(&a) == 2)
-		{
 			sa(&a);
-		}
 		else if (get_stack_len(&a) == 3)
-		{
 			tiny_sort(&a);
-		}
 		else
 			push_swap(&a, &b);
 	}

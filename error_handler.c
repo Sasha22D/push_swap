@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   error_handler.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sadaniel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/30 16:05:23 by sadaniel          #+#    #+#             */
+/*   Updated: 2025/12/30 16:05:29 by sadaniel         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "push_swap.h"
 
 void	free_stack(t_stack_node **a)
@@ -61,4 +72,13 @@ int	syntax_check(char *nbr)
 			return (1);
 	}
 	return (0);
+}
+
+void	error_handler(t_stack_node **stack, char **tab, int flag)
+{
+	free_stack(stack);
+	if (flag == 1)
+		free_argv(tab);
+	write(2, "Error\n", 6);
+	exit(1);
 }

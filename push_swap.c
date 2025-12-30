@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sadaniel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/30 16:05:46 by sadaniel          #+#    #+#             */
+/*   Updated: 2025/12/30 16:05:50 by sadaniel         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "push_swap.h"
 
 static void	set_target_node(t_stack_node **a, t_stack_node **b)
@@ -29,8 +40,8 @@ static void	set_target_node(t_stack_node **a, t_stack_node **b)
 
 static void	set_median(t_stack_node **a, t_stack_node **b)
 {
+	int				len;
 	t_stack_node	*head;
-	int		len;
 
 	head = *a;
 	len = get_stack_len(a);
@@ -56,8 +67,8 @@ static void	set_median(t_stack_node **a, t_stack_node **b)
 
 static void	set_price(t_stack_node **a, t_stack_node **b)
 {
+	int				len;
 	t_stack_node	*head;
-	int		len;
 
 	head = *a;
 	len = get_stack_len(a);
@@ -92,8 +103,8 @@ static void	set_cheapest(t_stack_node **stack)
 	cursor->target_node->cheapest = true;
 	while (head)
 	{
-		if (head->price + head->target_node->price <
-			cursor->price + cursor->target_node->price)
+		if (head->price + head->target_node->price
+			< cursor->price + cursor->target_node->price)
 		{
 			cursor->cheapest = false;
 			cursor->target_node->cheapest = false;
@@ -111,26 +122,4 @@ void	init_nodes_values(t_stack_node **a, t_stack_node **b)
 	set_median(a, b);
 	set_price(a, b);
 	set_cheapest(b);
-}
-
-void	push_swap(t_stack_node **a, t_stack_node **b)
-{
-	t_stack_node	*smallest;
-
-	while (get_stack_len(a) > 3)
-		pb(a, b);
-	tiny_sort(a);
-	while (*b)
-	{
-		init_nodes_values(a, b);
-		push_cheapest(a, b);
-	}
-	smallest = find_smallest(a);
-	while (*a != smallest)
-	{
-		if (smallest->above_median)
-			ra(a);
-		else
-			rra(a);
-	}
 }

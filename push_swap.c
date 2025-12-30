@@ -118,26 +118,19 @@ void	push_swap(t_stack_node **a, t_stack_node **b)
 	t_stack_node	*smallest;
 
 	while (get_stack_len(a) > 3)
-		push_first_element(a, b);
+		pb(a, b);
 	tiny_sort(a);
 	while (*b)
 	{
 		init_nodes_values(a, b);
-		t_stack_node *head = *b;
-		while (head)
-		{
-			printf("%d NODE ----> TARGET= %d\n", head->value, head->target_node->value);
-			head = head->next;
-		}
 		push_cheapest(a, b);
-		
 	}
 	smallest = find_smallest(a);
 	while (*a != smallest)
 	{
 		if (smallest->above_median)
-			rotate_stack(a);
+			ra(a);
 		else
-			reverse_rotate_stack(a);
+			rra(a);
 	}
 }

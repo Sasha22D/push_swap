@@ -45,3 +45,15 @@ void	push_first_element(t_stack_node **stack_1, t_stack_node **stack_2)
 		}
 	}
 }
+
+void	pa(t_stack_node **a, t_stack_node **b)
+{
+	push_first_element(b, a);
+	write(1, "pa\n", 3);
+}
+
+void	pb(t_stack_node **a, t_stack_node **b)
+{
+	push_first_element(a, b);
+	write(1, "pb\n", 3);
+}

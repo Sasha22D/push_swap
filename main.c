@@ -24,6 +24,7 @@ int	main(int argc, char **argv)
 	{
 		argv = ft_split(argv[1]);
 		ft_init_stack(&a, argv);
+		free_argv(argv);
 	}
 	else
 		ft_init_stack(&a, argv + 1);
@@ -31,7 +32,7 @@ int	main(int argc, char **argv)
 	{
 		if (get_stack_len(&a) == 2)
 		{
-			swap_first_elements(&a);
+			sa(&a);
 		}
 		else if (get_stack_len(&a) == 3)
 		{
@@ -40,19 +41,15 @@ int	main(int argc, char **argv)
 		else
 			push_swap(&a, &b);
 	}
-	while (a != NULL)
-	{
-		printf("NODE NUMBER %d\n=============\n", a->index);
-		printf("Value: %d, index: %d PRICE:%d CHEAPEST:%d\n", a->value, a->index, a->price, a->cheapest);
-		printf("ID: %p, Next: %p, prev: %p\n", (void*)a, (void*)a->next, (void*)a->prev);
-		a = a->next;
-	}
-	// printf("======================================\n");
-	// while (b != NULL)
+	free_stack(&a);
+	// if (is_stack_sorted(&a))
+	// 	printf("Sorted!\n");
+	// while (a != NULL)
 	// {
-	// 	printf("NODE NUMBER %d\n=============\n", b->index);
-	// 	printf("Value: %d, CHEAPEST: %d TARGET:%d MEDIAN:%d\n", b->value, b->cheapest, b->target_node->value, b->above_median);
-	// 	printf("ID: %p, Next: %p, prev: %p\n", (void*)b, (void*)b->next, (void*)b->prev);
-	// 	b = b->next;
+	// 	printf("NODE NUMBER %d\n=============\n", a->index);
+	// 	printf("Value: %d, index: %d PRICE:%d CHEAPEST:%d\n", a->value, a->index, a->price, a->cheapest);
+	// 	printf("ID: %p, Next: %p, prev: %p\n", (void*)a, (void*)a->next, (void*)a->prev);
+	// 	a = a->next;
 	// }
+	// printf("======================================\n");
 }

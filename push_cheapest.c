@@ -14,17 +14,33 @@ static t_stack_node	*get_cheapest(t_stack_node **stack)
 	return (head);
 }
 
-static void	rotate_cheapest(t_stack_node **stack, t_stack_node *cheapest)
+static void	rotate_cheapest(t_stack_node **stack, t_stack_node *cheapest, char c)
 {
 	if (cheapest->above_median)
 	{
-		while (*stack != cheapest)
-			rotate_stack(stack);
+		if (c == 'a')
+		{
+			while (*stack != cheapest)
+				ra(stack);
+		}
+		else
+		{
+			while (*stack != cheapest)
+				rb(stack);
+		}
 	}
 	else
 	{
-		while (*stack != cheapest)
-			reverse_rotate_stack(stack);
+		if (c == 'a')
+		{
+			while (*stack != cheapest)
+				rra(stack);
+		}
+		else
+		{
+			while (*stack != cheapest)
+				rrb(stack);
+		}
 	}
 }
 
@@ -43,9 +59,9 @@ void	push_cheapest(t_stack_node **a, t_stack_node **b)
 		while (*a != cheapest_node->target_node && *b != cheapest_node)
 			rrr(a, b);
 	}
-	rotate_cheapest(a, cheapest_node->target_node);
-	rotate_cheapest(b, cheapest_node);
+	rotate_cheapest(a, cheapest_node->target_node, 'a');
+	rotate_cheapest(b, cheapest_node, 'b');
 	(*a)->cheapest = false;
 	(*b)->cheapest = false;
-	push_first_element(b, a);
+	pa(a, b);
 }

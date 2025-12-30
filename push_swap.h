@@ -33,15 +33,19 @@ typedef struct s_stack_node
 char	**ft_split(char *str);
 void	ft_init_stack(t_stack_node **stack, char **tab);
 // SWAP FIRST ELEMENTS COMMANDS
-void	swap_first_elements(t_stack_node **stack);
+void	sa(t_stack_node **a);
+void	sb(t_stack_node **b);
 void	ss(t_stack_node **stack_a, t_stack_node **stack_b);
 // PUSH FIRST ELEMENT COMMAND
-void	push_first_element(t_stack_node **stack_1, t_stack_node **stack_2);
+void	pa(t_stack_node **a, t_stack_node **b);
+void	pb(t_stack_node **a, t_stack_node **b);
 // ROTATE COMMANDS
-void	rotate_stack(t_stack_node **stack);
+void	ra(t_stack_node **a);
+void	rb(t_stack_node **b);
 void	rr(t_stack_node **stack_a, t_stack_node **stack_b);
 // REVERSE ROTATE COMMANDS
-void	reverse_rotate_stack(t_stack_node **stack);
+void	rra(t_stack_node **a);
+void	rrb(t_stack_node **b);
 void	rrr(t_stack_node **stack_a, t_stack_node **stack_b);
 // CHECK STACK AND TINY SORT
 int		is_stack_sorted(t_stack_node **stack);

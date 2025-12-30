@@ -37,8 +37,21 @@ void	swap_first_elements(t_stack_node **stack)
 	*stack = second;
 }
 
+void	sa(t_stack_node **a)
+{
+	swap_first_elements(a);
+	write(1, "sa\n", 3);
+}
+
+void	sb(t_stack_node **b)
+{
+	swap_first_elements(b);
+	write(1, "sb\n", 3);
+}
+
 void	ss(t_stack_node **stack_a, t_stack_node **stack_b)
 {
 	swap_first_elements(stack_a);
 	swap_first_elements(stack_b);
+	write(1, "ss\n", 3);
 }

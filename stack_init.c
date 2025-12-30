@@ -76,30 +76,29 @@ void	ft_init_stack(t_stack_node **stack, char **tab)
 	i = 0;
 	while (tab[i])
 	{
-		if (syntax_check(tab[i]))
-		{
-			free_stack(stack);
-			free_argv(tab);
-			write(1, "Error\n", 6);
-			exit(1);
-		}
+		// if (syntax_check(tab[i]))
+		// {
+		// 	free_stack(stack);
+		// 	free_argv(tab);
+		// 	write(1, "Error\n", 6);
+		// 	exit(1);
+		// }
 		nb = ft_atol(tab[i]);
-		if (nb > INT_MAX || nb < INT_MIN)
-		{
-			free_stack(stack);
-			free_argv(tab);
-			write(1, "Error\n", 6);
-			exit(1);
-		}
-		if (repetition_check(stack, (int)nb))
-		{
-			free_stack(stack);
-			free_argv(tab);
-			write(1, "Error\n", 6);
-			exit(1);
-		}
+		// if (nb > INT_MAX || nb < INT_MIN)
+		// {
+		// 	free_stack(stack);
+		// 	free_argv(tab);
+		// 	write(1, "Error\n", 6);
+		// 	exit(1);
+		// }
+		// if (repetition_check(stack, (int)nb))
+		// {
+		// 	free_stack(stack);
+		// 	free_argv(tab);
+		// 	write(1, "Error\n", 6);
+		// 	exit(1);
+		// }
 		ft_lst_add_back(stack, ft_lst_new(nb, i));
 		i++;
 	}
-	free_argv(tab);
 }

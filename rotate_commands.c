@@ -39,8 +39,21 @@ void	rotate_stack(t_stack_node **stack)
 	*stack = second;
 }
 
+void	ra(t_stack_node **a)
+{
+	rotate_stack(a);
+	write(1, "ra\n", 3);
+}
+
+void	rb(t_stack_node **b)
+{
+	rotate_stack(b);
+	write(1, "rb\n", 3);
+}
+
 void	rr(t_stack_node **stack_a, t_stack_node **stack_b)
 {
 	rotate_stack(stack_a);
 	rotate_stack(stack_b);
+	write(1, "rr\n", 3);
 }

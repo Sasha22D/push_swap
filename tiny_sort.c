@@ -96,9 +96,9 @@ void	tiny_sort(t_stack_node **stack)
 
 	biggest = find_biggest(stack);
 	if (*stack == biggest)
-		rotate_stack(stack);
+		ra(stack);
 	else if ((*stack)->next == biggest)
-		reverse_rotate_stack(stack);
+		rra(stack);
 	if ((*stack)->value > (*stack)->next->value)
-		swap_first_elements(stack);
+		sa(stack);
 }

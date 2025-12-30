@@ -81,7 +81,7 @@ void	ft_init_stack(t_stack_node **stack, char **tab, int flag)
 			free_stack(stack);
 			if (flag == 1)
 				free_argv(tab);
-			write(1, "Error\n", 6);
+			write(2, "Error\n", 6);
 			exit(1);
 		}
 		nb = ft_atol(tab[i]);
@@ -90,7 +90,7 @@ void	ft_init_stack(t_stack_node **stack, char **tab, int flag)
 			free_stack(stack);
 			if (flag == 1)
 				free_argv(tab);
-			write(1, "Error\n", 6);
+			write(2, "Error\n", 6);
 			exit(1);
 		}
 		if (repetition_check(stack, (int)nb))
@@ -98,7 +98,7 @@ void	ft_init_stack(t_stack_node **stack, char **tab, int flag)
 			free_stack(stack);
 			if (flag == 1)
 				free_argv(tab);
-			write(1, "Error\n", 6);
+			write(2, "Error\n", 6);
 			exit(1);
 		}
 		ft_lst_add_back(stack, ft_lst_new(nb, i));

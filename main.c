@@ -23,11 +23,11 @@ int	main(int argc, char **argv)
 	if (argc == 2)
 	{
 		argv = ft_split(argv[1]);
-		ft_init_stack(&a, argv);
+		ft_init_stack(&a, argv, 1);
 		free_argv(argv);
 	}
 	else
-		ft_init_stack(&a, argv + 1);
+		ft_init_stack(&a, argv + 1, 0);
 	if (!is_stack_sorted(&a))
 	{
 		if (get_stack_len(&a) == 2)
@@ -42,14 +42,4 @@ int	main(int argc, char **argv)
 			push_swap(&a, &b);
 	}
 	free_stack(&a);
-	// if (is_stack_sorted(&a))
-	// 	printf("Sorted!\n");
-	// while (a != NULL)
-	// {
-	// 	printf("NODE NUMBER %d\n=============\n", a->index);
-	// 	printf("Value: %d, index: %d PRICE:%d CHEAPEST:%d\n", a->value, a->index, a->price, a->cheapest);
-	// 	printf("ID: %p, Next: %p, prev: %p\n", (void*)a, (void*)a->next, (void*)a->prev);
-	// 	a = a->next;
-	// }
-	// printf("======================================\n");
 }

@@ -35,26 +35,29 @@ void	free_argv(char **tab)
 
 int	repetition_check(t_stack_node **stack, int nb)
 {
+	t_stack_node	*head;
+
 	if (!stack)
 		return (0);
-	while (*stack)
+	head = *stack;
+	while (head)
 	{
-		if ((*stack)->value == nb)
+		if (head->value == nb)
 			return (1);
-		(*stack) = (*stack)->next;
+		head = head->next;
 	}
 	return (0);
 }
 
 int	syntax_check(char *nbr)
 {
-	if (*nbr != '+' || *nbr != '-' || (*nbr < '0' && *nbr > 9))
+	if (*nbr != '+' && *nbr != '-' && (*nbr < '0' || *nbr > '9'))
 		return (1);
-	if ((*nbr == '+' || *nbr == '-') && (nbr[1] < '0' && nbr[1] > '9'))
+	if ((*nbr == '+' || *nbr == '-') && (nbr[1] < '0' || nbr[1] > '9'))
 		return (1);
-	while (*nbr)
+	while (*++nbr)
 	{
-		if (*nbr < '0' && *nbr > '9')
+		if (*nbr < '0' || *nbr > '9')
 			return (1);
 	}
 	return (0);

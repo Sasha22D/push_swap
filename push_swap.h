@@ -31,7 +31,7 @@ typedef struct s_stack_node
 }			t_stack_node;
 
 char	**ft_split(char *str);
-void	ft_init_stack(t_stack_node **stack, char **tab);
+void	ft_init_stack(t_stack_node **stack, char **tab, int flag);
 // SWAP FIRST ELEMENTS COMMANDS
 void	sa(t_stack_node **a);
 void	sb(t_stack_node **b);

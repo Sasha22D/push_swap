@@ -12,7 +12,7 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-#include <unistd.h>
+# include <unistd.h>
 # include <stdbool.h>
 # include <stdlib.h>
 # include <limits.h>
@@ -30,38 +30,38 @@ typedef struct s_stack_node
 	struct s_stack_node	*prev;
 }			t_stack_node;
 
-char	**ft_split(char *str);
-void	ft_init_stack(t_stack_node **stack, char **tab, int flag);
+char			**ft_split(char *str);
+void			ft_init_stack(t_stack_node **stack, char **tab, int flag);
 // SWAP FIRST ELEMENTS COMMANDS
-void	sa(t_stack_node **a);
-void	sb(t_stack_node **b);
-void	ss(t_stack_node **stack_a, t_stack_node **stack_b);
+void			sa(t_stack_node **a);
+void			sb(t_stack_node **b);
+void			ss(t_stack_node **stack_a, t_stack_node **stack_b);
 // PUSH FIRST ELEMENT COMMAND
-void	pa(t_stack_node **a, t_stack_node **b);
-void	pb(t_stack_node **a, t_stack_node **b);
+void			pa(t_stack_node **a, t_stack_node **b);
+void			pb(t_stack_node **a, t_stack_node **b);
 // ROTATE COMMANDS
-void	ra(t_stack_node **a);
-void	rb(t_stack_node **b);
-void	rr(t_stack_node **stack_a, t_stack_node **stack_b);
+void			ra(t_stack_node **a);
+void			rb(t_stack_node **b);
+void			rr(t_stack_node **stack_a, t_stack_node **stack_b);
 // REVERSE ROTATE COMMANDS
-void	rra(t_stack_node **a);
-void	rrb(t_stack_node **b);
-void	rrr(t_stack_node **stack_a, t_stack_node **stack_b);
+void			rra(t_stack_node **a);
+void			rrb(t_stack_node **b);
+void			rrr(t_stack_node **stack_a, t_stack_node **stack_b);
 // CHECK STACK AND TINY SORT
-int		is_stack_sorted(t_stack_node **stack);
-int		get_stack_len(t_stack_node **stack);
 t_stack_node	*find_biggest(t_stack_node **stack);
 t_stack_node	*find_smallest(t_stack_node **stack);
-void	tiny_sort(t_stack_node **stack);
+int				is_stack_sorted(t_stack_node **stack);
+int				get_stack_len(t_stack_node **stack);
+void			tiny_sort(t_stack_node **stack);
 // ALGORITHM
-void	push_swap(t_stack_node **a, t_stack_node **b);
-void	init_nodes_values(t_stack_node **a, t_stack_node **b);
-void	push_cheapest(t_stack_node **a, t_stack_node **b);
+void			push_swap(t_stack_node **a, t_stack_node **b);
+void			init_nodes_values(t_stack_node **a, t_stack_node **b);
+void			push_cheapest(t_stack_node **a, t_stack_node **b);
 // ERROR HANDLING
-void	free_stack(t_stack_node **a);
-void	free_argv(char **tab);
-int	repetition_check(t_stack_node **stack, int nb);
-int	syntax_check(char *nbr);
-void	error_handler(t_stack_node **stack, char **tab, int flag);
+void			free_stack(t_stack_node **a);
+void			free_argv(char **tab);
+int				repetition_check(t_stack_node **stack, int nb);
+int				syntax_check(char *nbr);
+void			error_handler(t_stack_node **stack, char **tab, int flag);
 
 #endif

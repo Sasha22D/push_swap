@@ -1,6 +1,6 @@
 NAME = push_swap
 
-SRCS = error_handler.c ft_split.c main.c push_cheapest.c push_commands.c push_swap.c \
+SRCS = error_handler.c ft_split.c main.c push_swap_commands.c push_commands.c push_swap.c \
        reverse_rotate_commands.c rotate_commands.c stack_init.c \
        swap_commands.c tiny_sort.c
 

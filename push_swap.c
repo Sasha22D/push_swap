@@ -1,125 +1,94 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   push_cheapest.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sadaniel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/30 16:05:46 by sadaniel          #+#    #+#             */
-/*   Updated: 2025/12/30 16:05:50 by sadaniel         ###   ########.fr       */
+/*   Created: 2025/12/30 16:05:36 by sadaniel          #+#    #+#             */
+/*   Updated: 2025/12/30 16:05:41 by sadaniel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
 
-static void	set_target_node(t_stack_node **a, t_stack_node **b)
-{
-	t_stack_node	*head_a;
-	t_stack_node	*head_b;
-	t_stack_node	*best;
-
-	head_b = *b;
-	while (head_b)
-	{
-		best = NULL;
-		head_a = *a;
-		while (head_a)
-		{
-			if (head_a->value > head_b->value)
-			{
-				if (!best || head_a->value < best->value)
-					best = head_a;
-			}
-			head_a = head_a->next;
-		}
-		if (!best)
-			best = find_smallest(a);
-		head_b->target_node = best;
-		head_b = head_b->next;
-	}
-}
-
-static void	set_median(t_stack_node **a, t_stack_node **b)
-{
-	int				len;
-	t_stack_node	*head;
-
-	head = *a;
-	len = get_stack_len(a);
-	while (head)
-	{
-		if (head->index <= (len / 2))
-			head->above_median = true;
-		else
-			head->above_median = false;
-		head = head->next;
-	}
-	head = *b;
-	len = get_stack_len(b);
-	while (head)
-	{
-		if (head->index <= (len / 2))
-			head->above_median = true;
-		else
-			head->above_median = false;
-		head = head->next;
-	}
-}
-
-static void	set_price(t_stack_node **a, t_stack_node **b)
-{
-	int				len;
-	t_stack_node	*head;
-
-	head = *a;
-	len = get_stack_len(a);
-	while (head)
-	{
-		if (head->above_median)
-			head->price = head->index;
-		else
-			head->price = len - head->index;
-		head = head->next;
-	}
-	head = *b;
-	len = get_stack_len(b);
-	while (head)
-	{
-		if (head->above_median)
-			head->price = head->index;
-		else
-			head->price = len - head->index;
-		head = head->next;
-	}
-}
-
-static void	set_cheapest(t_stack_node **stack)
+static t_stack_node	*get_cheapest(t_stack_node **stack)
 {
 	t_stack_node	*head;
-	t_stack_node	*cursor;
 
 	head = *stack;
-	cursor = head;
-	cursor->cheapest = true;
-	cursor->target_node->cheapest = true;
 	while (head)
 	{
-		if (head->price + head->target_node->price
-			< cursor->price + cursor->target_node->price)
-		{
-			cursor->cheapest = false;
-			cursor->target_node->cheapest = false;
-			cursor = head;
-			cursor->cheapest = true;
-			cursor->target_node->cheapest = true;
-		}
+		if (head->cheapest)
+			return (head);
 		head = head->next;
+	}
+	return (head);
+}
+
+static void	rotate_cheapest(t_stack_node **stack,
+	t_stack_node *cheapest, char c)
+{
+	if (cheapest->above_median)
+	{
+		if (c == 'a')
+			while (*stack != cheapest)
+				ra(stack);
+		else
+			while (*stack != cheapest)
+				rb(stack);
+	}
+	else
+	{
+		if (c == 'a')
+			while (*stack != cheapest)
+				rra(stack);
+		else
+			while (*stack != cheapest)
+				rrb(stack);
 	}
 }
 
-void	init_nodes_values(t_stack_node **a, t_stack_node **b)
+void	push_cheapest(t_stack_node **a, t_stack_node **b)
 {
-	set_target_node(a, b);
-	set_median(a, b);
-	set_price(a, b);
-	set_cheapest(b);
+	t_stack_node	*cheapest_node;
+
+	cheapest_node = get_cheapest(b);
+	if (cheapest_node->above_median && cheapest_node->target_node->above_median)
+	{
+		while (*a != cheapest_node->target_node && *b != cheapest_node)
+			rr(a, b);
+	}
+	else if (!(cheapest_node->above_median)
+		&& !(cheapest_node->target_node->above_median))
+	{
+		while (*a != cheapest_node->target_node && *b != cheapest_node)
+			rrr(a, b);
+	}
+	rotate_cheapest(a, cheapest_node->target_node, 'a');
+	rotate_cheapest(b, cheapest_node, 'b');
+	(*a)->cheapest = false;
+	(*b)->cheapest = false;
+	pa(a, b);
+}
+
+void	push_swap(t_stack_node **a, t_stack_node **b)
+{
+	t_stack_node	*smallest;
+
+	while (get_stack_len(a) > 3)
+		pb(a, b);
+	tiny_sort(a);
+	while (*b)
+	{
+		init_nodes_values(a, b);
+		push_cheapest(a, b);
+	}
+	smallest = find_smallest(a);
+	while (*a != smallest)
+	{
+		if (smallest->above_median)
+			ra(a);
+		else
+			rra(a);
+	}
 }
